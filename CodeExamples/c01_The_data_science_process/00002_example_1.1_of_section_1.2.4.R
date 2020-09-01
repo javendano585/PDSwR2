@@ -3,10 +3,14 @@
 # Title: Calculating the confusion matrix 
 
 library("rpart") 	# Note: 1 
-load("loan_model_example.RData") 	# Note: 2 
+load("./Statlog/loan_model_example.RData") 	# Note: 2 
 conf_mat <- table(actual = d$Loan_status, pred = predict(model, type = 'class'))  	# Note: 3 
 
 conf_mat
+
+library("caret")
+confusionMatrix(data = d$Loan_status, reference = predict(model, type = 'class'), positive = "GoodLoan")
+
 ##           pred
 ## actual     BadLoan GoodLoan
 ##   BadLoan       41      259
